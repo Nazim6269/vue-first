@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-primary-600 text-white py-6">
+  <footer class="bg-primary-600 py-6">
     <div class="container mx-auto text-center">
       <div class="flex flex-col md:flex-row justify-center md:justify-between items-center">
         <!-- Brand Name / Logo -->
@@ -15,7 +15,7 @@
       </div>
 
       <!-- Copyright Section -->
-      <p class="mt-4 text-gray-400 text-sm">© 2025 Angular. All rights reserved by NazimUddin.</p>
+      <p class="mt-4 text-sm">© 2025 Angular. All rights reserved by NazimUddin.</p>
     </div>
   </footer>
 </template>
