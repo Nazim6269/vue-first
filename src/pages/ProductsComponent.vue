@@ -1,17 +1,17 @@
 <script setup>
+import { useFetchData } from '@/components/composables/useFetchData'
 import { RouterLink } from 'vue-router'
-const data = [
-  { id: 1, name: 'testOne', desc: 'This is desc for one' },
-  { id: 2, name: 'testTwo', desc: 'This is desc for two' },
-  { id: 3, name: 'testThree', desc: 'This is desc for three' },
-]
+
+const { loading, error, posts } = useFetchData()
 </script>
 
 <template>
   <section class="bg-slate-600 text-white py-20 px-6 text-center lg:text-left">
+    <div v-if="loading">Loading...</div>
+    <div v-if="error">Something went Wrong</div>
     <div class="max-w-7xl mx-auto grid grid-cols-4 gap-4">
       <RouterLink
-        v-for="item in data"
+        v-for="item in posts"
         :key="item.id"
         :to="`/products/${item.id}`"
         class="max-w-sm bg-white shadow-lg rounded-xl overflow-hidden"

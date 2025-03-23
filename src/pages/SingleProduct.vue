@@ -1,4 +1,5 @@
 <script setup>
+import { useFetchSingleItem } from '@/components/composables/useFetchSingleItem'
 import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
@@ -17,24 +18,17 @@ const productList = [
 const router = useRouter()
 const route = useRoute()
 const loading = ref(true)
-const error = ref(null)
 const product = ref(null)
-const productId = route.params.id
 
-watch(() => route.params.id, fetchData, { immediate: true })
-
-function fetchData() {
-  error.value = product.value = null
-  loading.value = true
-
-  try {
-    product.value = productList.find((p) => p.id === productId) || null
-  } catch (err) {
-    error.value = err.toString()
-  } finally {
-    loading.value = false
-  }
-}
+watch(
+  () => route.params.id,
+  (newId) => {
+    const result = useFetchSingleItem(newId, productList)
+    product.value = result.data.value
+    loading.value = result.loading.value
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
